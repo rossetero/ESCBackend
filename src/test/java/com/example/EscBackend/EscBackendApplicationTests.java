@@ -1,14 +1,13 @@
-package org.example.ESCBackend;
-
+package com.example.EscBackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ESCBackendApplicationTest {
+class EscBackendApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }

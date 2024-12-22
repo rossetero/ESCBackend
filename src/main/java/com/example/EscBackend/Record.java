@@ -1,12 +1,22 @@
-package org.example.ESCBackend.model;
+package com.example.EscBackend;
+
+
+
+import jakarta.persistence.*;
 
 import java.util.Objects;
-
+@Entity
+@Table(name="records")
 public class Record {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String name;
     private String telegram;
     private String phone;
     private String option;
+
+    public Record() {
+    }
 
     public Record(String name, String telegram, String phone, String option) {
         this.name = name;
@@ -60,3 +70,4 @@ public class Record {
         return Objects.hash(name, telegram, phone, option);
     }
 }
+
