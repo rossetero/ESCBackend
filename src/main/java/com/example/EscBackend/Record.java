@@ -14,7 +14,7 @@ public class Record {
     private String telegram;
     private String phone;
     private String option;
-
+    //datetime оставления заявки
     public Record() {
     }
 
@@ -68,6 +68,11 @@ public class Record {
     @Override
     public int hashCode() {
         return Objects.hash(name, telegram, phone, option);
+    }
+
+    @Override
+    public String toString(){
+        return "Client "+name+" requested "+option+".\nContacts:\n Telegram: "+telegram+"\n Phone: "+phone;
     }
 }
 
