@@ -4,6 +4,7 @@ package com.example.EscBackend;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 @Entity
 @Table(name="records")
@@ -14,15 +15,26 @@ public class Record {
     private String telegram;
     private String phone;
     private String option;
+    private LocalDateTime date;
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
     //datetime оставления заявки
+
     public Record() {
     }
 
-    public Record(String name, String telegram, String phone, String option) {
+    public Record(String name, String telegram, String phone, String option,LocalDateTime date) {
         this.name = name;
         this.telegram = telegram;
         this.phone = phone;
         this.option = option;
+        this.date = date;
     }
 
     public String getName() {

@@ -13,21 +13,22 @@ public class RecordController {
     @Autowired
     private RecordService recordService;
 
-    @GetMapping
+    @GetMapping("/getAllRecords")
     public List<Record> getAllRecords() {
         return recordService.findAll();
     }
 
+    // TODO добавлние в бд
     @PostMapping
     public Record createRecord(@RequestBody Record record) {
         return recordService.save(record);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Record> getRecordById(@PathVariable Long id) {
-        Record record = recordService.findById(id);
-        return record != null ? ResponseEntity.ok(record) : ResponseEntity.notFound().build();
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Record> getRecordById(@PathVariable Long id) {
+//        Record record = recordService.findById(id);
+//        return record != null ? ResponseEntity.ok(record) : ResponseEntity.notFound().build();
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRecord(@PathVariable Long id) {

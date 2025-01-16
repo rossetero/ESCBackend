@@ -17,22 +17,40 @@ public class TelegramRecordController {
     @Autowired
     private TelegramBotService telegramBotService;
 
-    @PostMapping("/webhook") // Установите вебхук для получения обновлений от Telegram
+    @PostMapping("/webhook")
     public void handleUpdate(@RequestBody Update update) {
         String messageText = update.getMessage().getText();
         Long chatId = update.getMessage().getChat().getId();
-        System.out.println("********COMMAND**********"+messageText+"********************");
-        if (messageText.equals("/getAllRecords")) {
-            List<Record> records = recordService.findAll();
-            StringBuilder responseMessage = new StringBuilder("All Records:\n");
-            System.out.println("*****RESPONSE*************"+responseMessage+"********************");
-            for (Record record : records) {
-                responseMessage.append(record.toString()).append("\n"); // Предполагается, что у вас есть метод toString() в Record
+        if (messageText.startsWith("/getRecords")) {
+            Integer limit = extractNumber(messageText);
+            List<Record> records;
+            if(limit!=null){
+                records = recordService.findLimitedRecords(limit); //TODO протестировать на ноуте через впн
+            } else {
+                records = recordService.findAll();
             }
-            System.out.println("*****RESPONSE*************"+responseMessage+"********************");
+            StringBuilder responseMessage = new StringBuilder("All Records:\n");
+            for (Record record : records) {
+                responseMessage.append(record.toString()).append("\n");
+            }
 
             telegramBotService.sendMessage(responseMessage.toString());
+            //получить вчеращние и сегодняшние записи
         }
+    }
+
+    private Integer extractNumber(String str) {
+        str = str.trim();
+        int lastSpaceIndex = str.lastIndexOf(' ');
+        if (lastSpaceIndex != -1 && lastSpaceIndex < str.length() - 1) {
+            String numberPart = str.substring(lastSpaceIndex + 1);
+            try {
+                return Integer.parseInt(numberPart);
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+        return null;
     }
 }
 
