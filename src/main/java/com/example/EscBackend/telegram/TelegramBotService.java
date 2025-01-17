@@ -1,4 +1,4 @@
-package com.example.EscBackend;
+package com.example.EscBackend.telegram;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;

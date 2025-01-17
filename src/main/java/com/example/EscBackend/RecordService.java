@@ -18,6 +18,12 @@ public class RecordService {
     }
 
     public Record save(Record record) {
+        //Record record = new Record(recordDTO);
+//        record.setName(recordDTO.getName());
+//        record.setTelegram(recordDTO.getTelegram());
+//        record.setPhone(recordDTO.getPhone());
+//        record.setOption(recordDTO.getOption());
+        record.setDate(LocalDateTime.now());
         return recordRepository.save(record);
     }
 

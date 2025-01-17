@@ -1,5 +1,7 @@
-package com.example.EscBackend;
+package com.example.EscBackend.telegram;
 
+import com.example.EscBackend.Record;
+import com.example.EscBackend.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +25,7 @@ public class TelegramRecordController {
         Long chatId = update.getMessage().getChat().getId();
         if (messageText.startsWith("/getRecords")) {
             Integer limit = extractNumber(messageText);
-            List<Record> records;
+            List<com.example.EscBackend.Record> records;
             if(limit!=null){
                 records = recordService.findLimitedRecords(limit); //TODO протестировать на ноуте через впн
             } else {

@@ -18,17 +18,10 @@ public class RecordController {
         return recordService.findAll();
     }
 
-    // TODO добавлние в бд
-    @PostMapping
+    @PostMapping("/addRecord")
     public Record createRecord(@RequestBody Record record) {
         return recordService.save(record);
     }
-
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Record> getRecordById(@PathVariable Long id) {
-//        Record record = recordService.findById(id);
-//        return record != null ? ResponseEntity.ok(record) : ResponseEntity.notFound().build();
-//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRecord(@PathVariable Long id) {

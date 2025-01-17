@@ -11,23 +11,16 @@ import java.util.Objects;
 public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String telegram;
     private String phone;
     private String option;
     private LocalDateTime date;
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    //datetime оставления заявки
 
     public Record() {
     }
+
 
     public Record(String name, String telegram, String phone, String option,LocalDateTime date) {
         this.name = name;
@@ -35,6 +28,15 @@ public class Record {
         this.phone = phone;
         this.option = option;
         this.date = date;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -68,6 +70,15 @@ public class Record {
     public void setOption(String option) {
         this.option = option;
     }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
 
     @Override
     public boolean equals(Object o) {
