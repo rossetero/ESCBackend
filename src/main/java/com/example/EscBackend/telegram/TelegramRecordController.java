@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
+import java.util.Scanner;
 
 @RestController
 public class TelegramRecordController {
@@ -24,8 +25,10 @@ public class TelegramRecordController {
         String messageText = update.getMessage().getText();
         Long chatId = update.getMessage().getChat().getId();
         if (messageText.startsWith("/getRecords")) {
+            System.out.println(messageText);
             Integer limit = extractNumber(messageText);
-            List<com.example.EscBackend.Record> records;
+            System.out.println(limit);
+            List<Record> records;
             if(limit!=null){
                 records = recordService.findLimitedRecords(limit); //TODO протестировать на ноуте через впн
             } else {
@@ -42,17 +45,13 @@ public class TelegramRecordController {
     }
 
     private Integer extractNumber(String str) {
-        str = str.trim();
-        int lastSpaceIndex = str.lastIndexOf(' ');
-        if (lastSpaceIndex != -1 && lastSpaceIndex < str.length() - 1) {
-            String numberPart = str.substring(lastSpaceIndex + 1);
-            try {
-                return Integer.parseInt(numberPart);
-            } catch (NumberFormatException e) {
-                return null;
-            }
+        Scanner s = new Scanner(str);
+        s.next();
+        if(s.hasNextInt()){
+            return s.nextInt();
+        } else {
+            return null;
         }
-        return null;
     }
 }
 

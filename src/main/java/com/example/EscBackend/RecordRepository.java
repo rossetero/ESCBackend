@@ -12,8 +12,7 @@ import java.util.List;
 
 @Repository
 public interface RecordRepository extends JpaRepository<Record, Long> {
-    // Метод для получения всех записей с лимитом
-    @Query(value = "SELECT r FROM Record r")
-    List<Record> findLimitedRecords(@Param("limit") int limit);
+    @Query(value = "SELECT r FROM Record r ORDER BY r.id DESC")
+    List<Record> findLastRecords(Pageable pageable);
 }
 

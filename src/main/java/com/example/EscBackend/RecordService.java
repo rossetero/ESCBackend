@@ -3,6 +3,8 @@ package com.example.EscBackend;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,11 +20,6 @@ public class RecordService {
     }
 
     public Record save(Record record) {
-        //Record record = new Record(recordDTO);
-//        record.setName(recordDTO.getName());
-//        record.setTelegram(recordDTO.getTelegram());
-//        record.setPhone(recordDTO.getPhone());
-//        record.setOption(recordDTO.getOption());
         record.setDate(LocalDateTime.now());
         return recordRepository.save(record);
     }
@@ -35,5 +32,8 @@ public class RecordService {
         recordRepository.deleteById(id);
     }
 
-    public List<Record> findLimitedRecords(int limit){return recordRepository.findLimitedRecords(limit);}
+    public List<Record> findLimitedRecords(int limit) {
+        Pageable pageable = PageRequest.of(0, limit);
+        return recordRepository.findLastRecords(pageable);
+    }
 }
