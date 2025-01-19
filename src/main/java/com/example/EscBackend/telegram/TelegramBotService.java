@@ -40,7 +40,7 @@ public class TelegramBotService {
 
     @PostConstruct
     public void setWebhook() {
-        String url = String.format("https://api.telegram.org/bot%s/setWebhook?url=%s/webhook", botToken, "internal-unduly-peacock.ngrok-free.app");
+        String url = String.format("https://api.telegram.org/bot%s/setWebhook?url=%s/webhook", botToken, "escbackend.onrender.com");
         restTemplate.postForObject(url, null, String.class);
     }
 }
