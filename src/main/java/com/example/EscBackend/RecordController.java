@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:8099", "https://dev.bro-js.ru/esc"})
 @RequestMapping("/api/v1/records")
 public class RecordController {
     @Autowired

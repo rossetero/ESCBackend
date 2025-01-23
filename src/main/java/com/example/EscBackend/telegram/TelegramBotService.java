@@ -17,9 +17,6 @@ public class TelegramBotService {
     @Value("${telegram.bot.token}")
     private String botToken;
 
-//    @Value("${telegram.user.id}")
-//    private String userId;
-
 
     @Value("${telegram.user.ids}")
     private String userIdsConfig;
