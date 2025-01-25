@@ -5,6 +5,7 @@ package com.example.EscBackend;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 @Entity
 @Table(name="records")
@@ -95,7 +96,7 @@ public class Record {
 
     @Override
     public String toString(){
-        return "Client "+name+" requested "+option+".\nContacts:\n Telegram: "+telegram+"\n Phone: "+phone;
+        return "\nClient "+name+" requested "+option+".\nContacts:\n Telegram: "+telegram+"\n Phone: "+phone+"\nRequest sent at "+date.format(DateTimeFormatter.ofPattern("dd.MM 'at' HH:mm"));
     }
 }
 

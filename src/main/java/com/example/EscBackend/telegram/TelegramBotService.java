@@ -38,6 +38,8 @@ public class TelegramBotService {
     @PostConstruct
     public void setWebhook() {
         String url = String.format("https://api.telegram.org/bot%s/setWebhook?url=%s/webhook", botToken, "escbackend.onrender.com");
+        //String url = String.format("https://api.telegram.org/bot%s/setWebhook?url=%s/webhook", botToken, "internal-unduly-peacock.ngrok-free.app");
+
         restTemplate.postForObject(url, null, String.class);
     }
 }
